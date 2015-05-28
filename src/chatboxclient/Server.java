@@ -58,14 +58,16 @@ public class Server  {
         out= new PrintWriter (socket.getOutputStream(), true);
         while (true) {
             String message=in.readLine();
-            if (message.startsWith("MESSAGE")) {
-                for (PrintWriter writer : writers) {
-                    writer.println(message.substring(7));
-                }
-            }
             if (message.startsWith("NAME")) {
                 name=message.substring(4);
+                nameList.add(name);
             }
+            if (message.startsWith("MESSAGE")) {
+                for (PrintWriter writer : writers) {
+                    writer.println(name+": "+message.substring(7));
+                }
+            }
+            
             
             
         }
@@ -73,6 +75,10 @@ public class Server  {
         catch (Exception e) {
             System.out.print(e);
         }
+    }
+    
+    public PrintWriter getOut() {
+        return out;
     }
         
 }

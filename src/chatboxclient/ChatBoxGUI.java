@@ -45,12 +45,15 @@ private Socket serverSocket;
         initComponents();
        addListeners();
       thisFrame=this;
+     
        //server= new Server();
       //mor eedit and what not
       //yeeeee
+      //what hte hell i changed things
     }
     
     public void addListeners() {
+        //adds listeners
         
          connectButton.addActionListener(new AllListener());
         sendButton.addActionListener(new AllListener());
@@ -236,22 +239,23 @@ private Socket serverSocket;
     private class AllListener implements ActionListener {
         @Override
         public void actionPerformed (ActionEvent e) {
-            
+            //connects the user to the server 
             if (e.getSource().equals(connectButton)) {
                  whoOnlineField.insert(nameField.getText()+"\n",0);
                  
                  out.println("NAME"+nameField.getText());
                  connectButton=null;
                  nameField.setEditable(false);
+                 new InMessages().start();
                  //Button b= new Button();
                  //connectButton.disable();
                  
             }
+            //sends the messages to everyone connected. basically sends the message to the server and
+            //server will send the message to all the people connected
             if (e.getSource().equals(sendButton)) {
-                sentMessageArea.insert(nameField.getText()+": "+messageField.getText()+"\n\n\n",0);
-                if (isAserver) {
-                   
-                }
+                sentMessageArea.append("\n\n\n"+nameField.getText()+": "+messageField.getText());
+                
                 out.println("MESSAGE"+messageField.getText());
                 
                 messageField.setText("");
@@ -290,8 +294,12 @@ private Socket serverSocket;
                 yourIP.setVisible(true);
                 yourIP.pack();
                 */
-                try {
+                try {//creates a server and connects to that server
                 server= new Server(IPAddress);
+                //creates a new socket
+                serverSocket =new Socket(IPAddress,45981);
+                in =new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
+                out= new PrintWriter(serverSocket.getOutputStream());
                 
                 }
                 catch(Exception exc) {
@@ -302,11 +310,14 @@ private Socket serverSocket;
                 
                 
             }
-            if (e.getSource().equals(no)) {
+            if (e.getSource().equals(no)) {//doesn't create the server but connects to it
                 IPAddr();
                 try {
                 InetAddress i= InetAddress.getByName(IPAddress);
-                clientSocket = new Socket (i,45981);
+                clientSocket = new Socket (IPAddress,45981);
+                in =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                out=new PrintWriter(clientSocket.getOutputStream());
+                
                 }
                 catch (Exception exception) {
                     System.out.print(exception);
@@ -332,7 +343,23 @@ private Socket serverSocket;
         }
     }
     */
-  
+    
+    //sits there and gets stuff from the server then puts it in the sent message area of the GUI
+ private class InMessages extends Thread {
+     @Override
+     public void run () {
+         try {
+         while (true) {
+            
+             String s= in.readLine();
+             sentMessageArea.append(s);
+         }
+         }
+         catch (Exception e) {
+             System.out.println(e);
+         }
+     }
+ }
 
     
 }
