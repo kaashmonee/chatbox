@@ -18,8 +18,8 @@ import java.io.*;
 import java.util.HashSet;
 
 /**
- *
- * @author skandakaashyap
+ * They want the Download
+ * @author SKAAASHMONEY_WestSIE
  */
 public class ChatBoxGUI extends javax.swing.JFrame {
 private JFrame getIP;

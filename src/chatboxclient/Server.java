@@ -18,11 +18,13 @@ public class Server extends Thread {
     //initializing instance variables
     public final static int port =45981;
     private ServerSocket s;
-    private HashSet <PrintWriter> writers;
-    private HashSet <String> nameList;
+    private ArrayList <PrintWriter> writers;
+    private ArrayList <String> nameList;
     //constructor
     public Server(String IP) throws IOException {
-        InetAddress ipAddr=InetAddress.getByName(IP);
+        writers= new ArrayList<PrintWriter>();
+        nameList= new ArrayList<String>();
+          InetAddress ipAddr=InetAddress.getByName(IP);
         s= new ServerSocket(port, 0,ipAddr);
     }
     //run method for the server
@@ -36,7 +38,7 @@ public class Server extends Thread {
         }
         }
         catch (Exception e) {
-            return;
+            System.out.print(e);
         }
     
     }
@@ -51,7 +53,7 @@ public class Server extends Thread {
     
     public HandlerThread(Socket s) {
         socket =s;
-        nameList= new HashSet<String>();
+        //nameList= new HashSet<String>();
     }
     @Override
     public void run() {
