@@ -67,6 +67,7 @@ public class Server extends Thread {
             if (message.startsWith("MESSAGE")) {
                 for (PrintWriter writer : writers) {
                     writer.println(name+": "+message.substring(7));
+                    writer.flush();
                 }
             }
             

@@ -271,7 +271,7 @@ private Socket serverSocket;
                     try {//creates a server and connects to that server
                  new Server(IPAddress).start();
                 //creates a new socket
-                serverSocket =new Socket(IPAddress,45981);
+                serverSocket =new Socket(InetAddress.getByName(IPAddress),Server.port);
                 in =new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
                 out= new PrintWriter(serverSocket.getOutputStream(),true);
                 
@@ -283,7 +283,7 @@ private Socket serverSocket;
                 else {
                     try {
                 InetAddress i= InetAddress.getByName(IPAddress);
-                clientSocket = new Socket (IPAddress,45981);
+                clientSocket = new Socket (i,Server.port);
                 in =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 out=new PrintWriter(clientSocket.getOutputStream(),true);
                 
