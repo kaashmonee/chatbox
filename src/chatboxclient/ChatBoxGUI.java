@@ -46,6 +46,8 @@ private Socket serverSocket;
        addListeners();
       thisFrame=this;
        //server= new Server();
+      //mor eedit and what not
+      //yeeeee
     }
     
     public void addListeners() {
