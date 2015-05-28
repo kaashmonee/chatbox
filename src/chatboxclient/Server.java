@@ -14,7 +14,7 @@ import java.io.*;
 //IP ADDRESS OF SCHOOL 184.61.38.240
 //final static String serge="pondering"+null;
 //THE PORT NUMBER IS 45981
-public class Server  { 
+public class Server extends Thread { 
     //initializing instance variables
     public final static int port =45981;
     private ServerSocket s;
