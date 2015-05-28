@@ -26,11 +26,12 @@ public class Server extends Thread {
         s= new ServerSocket(port, 0,ipAddr);
     }
     //run method for the server
-    public void runServer() {
+    @Override
+    public void run() {
          try {
         while (true) {
            Socket socket = s.accept();
-           writers.add(new PrintWriter(socket.getOutputStream()));
+           writers.add(new PrintWriter(socket.getOutputStream(),true));
             new HandlerThread(socket).start();
         }
         }
@@ -52,6 +53,7 @@ public class Server extends Thread {
         socket =s;
         nameList= new HashSet<String>();
     }
+    @Override
     public void run() {
         try {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));

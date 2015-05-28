@@ -267,6 +267,31 @@ private Socket serverSocket;
                 IPAddress=ipField.getText().trim();
                 getIP.setVisible(false);
                 thisFrame.setVisible(true);
+                if (isAserver) {
+                    try {//creates a server and connects to that server
+                 new Server(IPAddress).start();
+                //creates a new socket
+                serverSocket =new Socket(IPAddress,45981);
+                in =new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
+                out= new PrintWriter(serverSocket.getOutputStream(),true);
+                
+                }
+                catch(Exception exc) {
+                    System.out.print(exc);
+                }
+                }
+                else {
+                    try {
+                InetAddress i= InetAddress.getByName(IPAddress);
+                clientSocket = new Socket (IPAddress,45981);
+                in =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                out=new PrintWriter(clientSocket.getOutputStream(),true);
+                
+                }
+                catch (Exception exception) {
+                    System.out.print(exception);
+                }
+                }
                 /*try {
                 InetAddress i= InetAddress.getByName(IPAddress);
                 clientSocket = new Socket (i,45981);
@@ -294,17 +319,7 @@ private Socket serverSocket;
                 yourIP.setVisible(true);
                 yourIP.pack();
                 */
-                try {//creates a server and connects to that server
-                server= new Server(IPAddress);
-                //creates a new socket
-                serverSocket =new Socket(IPAddress,45981);
-                in =new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
-                out= new PrintWriter(serverSocket.getOutputStream());
                 
-                }
-                catch(Exception exc) {
-                    System.out.print(exc);
-                }
                 //thisFrame.setVisible(true);
                 isAserver=true;
                 
@@ -312,16 +327,7 @@ private Socket serverSocket;
             }
             if (e.getSource().equals(no)) {//doesn't create the server but connects to it
                 IPAddr();
-                try {
-                InetAddress i= InetAddress.getByName(IPAddress);
-                clientSocket = new Socket (IPAddress,45981);
-                in =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                out=new PrintWriter(clientSocket.getOutputStream());
                 
-                }
-                catch (Exception exception) {
-                    System.out.print(exception);
-                }
                 isAserver=false;
             }
             
