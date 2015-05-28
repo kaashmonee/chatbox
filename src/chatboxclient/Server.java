@@ -78,7 +78,7 @@ public class Server extends Thread {
         }
         }
         catch (Exception e) {
-            System.out.print(e);
+            System.out.print(e+"server exception");
         }
     }
     
