@@ -254,7 +254,7 @@ private Socket serverSocket;
             //sends the messages to everyone connected. basically sends the message to the server and
             //server will send the message to all the people connected
             if (e.getSource().equals(sendButton)) {
-                sentMessageArea.append("\n\n\n"+nameField.getText()+": "+messageField.getText());
+                //sentMessageArea.append("\n\n\n"+nameField.getText()+": "+messageField.getText());
                 
                 out.println("MESSAGE"+messageField.getText());
                 
@@ -358,7 +358,7 @@ private Socket serverSocket;
          while (true) {
             
              String s= in.readLine();
-             sentMessageArea.append(s);
+             sentMessageArea.append("\n\n\n"+s);
          }
          }
          catch (Exception e) {
