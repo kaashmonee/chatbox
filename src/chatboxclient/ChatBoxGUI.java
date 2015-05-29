@@ -19,7 +19,7 @@ import java.util.HashSet;
 
 /**
  * They want the Download
- * @author SKAAASHMONEY_WestSIE
+ * @author SKAAASHMONEY_WestSIEde
  */
 public class ChatBoxGUI extends javax.swing.JFrame {
 private JFrame getIP;
@@ -241,12 +241,13 @@ private Socket serverSocket;
         public void actionPerformed (ActionEvent e) {
             //connects the user to the server 
             if (e.getSource().equals(connectButton)) {
-                 whoOnlineField.insert(nameField.getText()+"\n",0);
+                // whoOnlineField.insert(nameField.getText()+"\n",0);
                  
                  out.println("NAME"+nameField.getText());
                  connectButton=null;
                  nameField.setEditable(false);
                  new InMessages().start();
+                 //new WhoOnlineThread().start();
                  //Button b= new Button();
                  //connectButton.disable();
                  
@@ -358,7 +359,12 @@ private Socket serverSocket;
          while (true) {
             
              String s= in.readLine();
-             sentMessageArea.append("\n\n\n"+s);
+             if (s.startsWith("MESSAGE")) {
+             sentMessageArea.append("\n\n\n"+s.substring(7));
+             }
+             if (s.startsWith("ONLINE")) {
+                 whoOnlineField.append("\n"+s.substring(6));
+             }
          }
          }
          catch (Exception e) {
@@ -366,6 +372,8 @@ private Socket serverSocket;
          }
      }
  }
+ //sits there and waits for the server to send the name message
+
 
     
 }

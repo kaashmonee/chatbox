@@ -19,11 +19,11 @@ public class Server extends Thread {
     public final static int port =45981;
     private ServerSocket s;
     private ArrayList <PrintWriter> writers;
-    private ArrayList <String> nameList;
+    private HashSet <String> nameList;
     //constructor
     public Server(String IP) throws IOException {
         writers= new ArrayList<PrintWriter>();
-        nameList= new ArrayList<String>();
+        nameList= new HashSet<String>();
           InetAddress ipAddr=InetAddress.getByName(IP);
         s= new ServerSocket(port, 0,ipAddr);
     }
@@ -65,10 +65,15 @@ public class Server extends Thread {
             if (message.startsWith("NAME")) {
                 name=message.substring(4);
                 nameList.add(name);
+                //updating who's online list
+                 for (PrintWriter writer : writers) {
+                    writer.println("ONLINE"+name);
+                }
+                
             }
             if (message.startsWith("MESSAGE")) {
                 for (PrintWriter writer : writers) {
-                    writer.println(name+": "+message.substring(7));
+                    writer.println("MESSAGE"+name+": "+message.substring(7));
                     writer.flush();
                 }
             }
