@@ -67,7 +67,10 @@ public class Server extends Thread {
                 nameList.add(name);
                 //updating who's online list
                  for (PrintWriter writer : writers) {
-                    writer.println("ONLINE"+name);
+                    for (String string : nameList) {
+                        out.println("ONLINE"+string);
+                    }
+                    
                 }
                 
             }
