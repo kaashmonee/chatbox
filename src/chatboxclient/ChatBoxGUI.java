@@ -6,6 +6,7 @@
 package chatboxclient;
 
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -106,6 +107,7 @@ private Socket serverSocket;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         connectButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         messageField = new javax.swing.JTextArea();
@@ -122,6 +124,7 @@ private Socket serverSocket;
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        changeColorMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,6 +174,15 @@ private Socket serverSocket;
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        changeColorMenuItem.setText("Change Frame Color");
+        changeColorMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeColorMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(changeColorMenuItem);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -190,15 +202,11 @@ private Socket serverSocket;
                 .addComponent(whoOnlineLabel)
                 .addGap(34, 34, 34))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(sendButton, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
@@ -220,8 +228,8 @@ private Socket serverSocket;
                         .addComponent(whoOnlineLabel)
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(sendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -244,17 +252,24 @@ private Socket serverSocket;
         thisFrame.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void changeColorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeColorMenuItemActionPerformed
+       JFrame f= new ChangeColorFrame();
+       f.setVisible(true);
+    }//GEN-LAST:event_changeColorMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem changeColorMenuItem;
     private javax.swing.JButton connectButton;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -404,6 +419,192 @@ private Socket serverSocket;
      }
  }
  //sits there and waits for the server to send the name message
+ 
+ /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+/**
+ *
+ * @author skandakaashyap
+ */
+
+private class ChangeColorFrame extends javax.swing.JFrame {
+
+    /**
+     * Creates new form ChangeColorFrame
+     */
+    public ChangeColorFrame() {
+        super ("Choose Color");
+        initComponents();
+        ButtonGroup bg1= new ButtonGroup();
+        bg1.add(redButton);
+        bg1.add(blueButton);
+        bg1.add(yellowButton);
+        bg1.add(greenButton);
+        bg1.add(customColorButton);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jLabel1 = new javax.swing.JLabel();
+        redButton = new javax.swing.JRadioButton();
+        blueButton = new javax.swing.JRadioButton();
+        greenButton = new javax.swing.JRadioButton();
+        yellowButton = new javax.swing.JRadioButton();
+        customColorButton = new javax.swing.JRadioButton();
+        colorDoneButton = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Change Color: ");
+
+        redButton.setText("Red");
+        redButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redButtonActionPerformed(evt);
+            }
+        });
+
+        blueButton.setText("Blue");
+        blueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blueButtonActionPerformed(evt);
+            }
+        });
+
+        greenButton.setText("Green");
+        greenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                greenButtonActionPerformed(evt);
+            }
+        });
+
+        yellowButton.setText("Yellow");
+        yellowButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yellowButtonActionPerformed(evt);
+            }
+        });
+
+        customColorButton.setText("Custom");
+        customColorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customColorButtonActionPerformed(evt);
+            }
+        });
+
+        colorDoneButton.setText("Done");
+        colorDoneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorDoneButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(colorDoneButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(customColorButton)
+                            .addComponent(redButton)
+                            .addComponent(greenButton)
+                            .addComponent(yellowButton)
+                            .addComponent(blueButton))))
+                .addContainerGap(107, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(redButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(blueButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(greenButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(yellowButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(customColorButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(colorDoneButton)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    private void redButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        thisFrame.getContentPane().setBackground(Color.red);
+    }                                         
+
+    private void blueButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        thisFrame.getContentPane().setBackground(Color.BLUE);
+    }                                          
+
+    private void greenButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        thisFrame.getContentPane().setBackground(Color.green);
+    }                                           
+
+    private void yellowButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        thisFrame.getContentPane().setBackground(Color.yellow);
+    }                                            
+
+    private void customColorButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        //c=JColorChooser.createDialog(null, "Choose Your Own Color!",)
+        thisFrame.getContentPane().setBackground(c);
+    }                                                 
+
+    private void colorDoneButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        this.setVisible(false);
+    }                                               
+
+    /**
+     * @param args the command line arguments
+     */
+    
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JRadioButton blueButton;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.JButton colorDoneButton;
+    private javax.swing.JRadioButton customColorButton;
+    private javax.swing.JRadioButton greenButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JRadioButton redButton;
+    private javax.swing.JRadioButton yellowButton;
+    // End of variables declaration                   
+}
+
 
 
     
