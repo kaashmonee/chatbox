@@ -19,11 +19,11 @@ public class Server extends Thread {
     public final static int port =45981;
     private ServerSocket s;
     private ArrayList <PrintWriter> writers;
-    private HashSet <String> nameList;
+    private ArrayList <String> nameList;
     //constructor
     public Server(String IP) throws IOException {
         writers= new ArrayList<PrintWriter>();
-        nameList= new HashSet<String>();
+        nameList= new ArrayList<String>();
           InetAddress ipAddr=InetAddress.getByName(IP);
         s= new ServerSocket(port, 0,ipAddr);
     }
@@ -47,6 +47,7 @@ public class Server extends Thread {
     private BufferedReader in;
     private PrintWriter out;
     private String name;
+    private boolean nameListChanged=true;
     //private HashSet nameList;
     //private HashSet printWriters;
   
@@ -67,11 +68,16 @@ public class Server extends Thread {
                 nameList.add(name);
                 //updating who's online list
                  for (PrintWriter writer : writers) {
-                    for (String string : nameList) {
-                        out.println("ONLINE"+string);
-                    }
+                    writer.println("ONLINE"+nameList.get(nameList.size()-1));
+                    
+                    
                     
                 }
+                 ArrayList<String> temp=nameList;
+                    temp.remove(name);
+                    for (String tempS : temp) {
+                        out.println("ONLINE"+tempS);
+                    }
                 
             }
             if (message.startsWith("MESSAGE")) {

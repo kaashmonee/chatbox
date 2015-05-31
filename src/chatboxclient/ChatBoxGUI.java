@@ -578,7 +578,7 @@ private class ChangeColorFrame extends javax.swing.JFrame {
 
     private void customColorButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         //c=JColorChooser.createDialog(null, "Choose Your Own Color!",)
-        thisFrame.getContentPane().setBackground(c);
+        //thisFrame.getContentPane().setBackground(c);
     }                                                 
 
     private void colorDoneButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
