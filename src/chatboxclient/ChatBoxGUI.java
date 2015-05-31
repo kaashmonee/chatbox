@@ -35,6 +35,7 @@ private BufferedReader in;
 private PrintWriter out;
 private Socket clientSocket;
 private Socket serverSocket;
+private Color oldColor;
 //private String ipAddress;
 
     /**
@@ -409,7 +410,7 @@ private Socket serverSocket;
              sentMessageArea.append("\n\n\n"+s.substring(7));
              }
              if (s.startsWith("ONLINE")) {
-                 whoOnlineField.append("\n"+s.substring(6));
+                 whoOnlineField.append(s.substring(6)+"\n");
              }
          }
          }
@@ -447,6 +448,7 @@ private class ChangeColorFrame extends javax.swing.JFrame {
         bg1.add(greenButton);
         bg1.add(customColorButton);
     }
+    //private Color oldColor;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -562,23 +564,30 @@ private class ChangeColorFrame extends javax.swing.JFrame {
 
     private void redButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
         thisFrame.getContentPane().setBackground(Color.red);
+        oldColor=Color.red;
     }                                         
 
     private void blueButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         thisFrame.getContentPane().setBackground(Color.BLUE);
+        oldColor=Color.BLUE;
     }                                          
 
     private void greenButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         thisFrame.getContentPane().setBackground(Color.green);
+        oldColor=Color.green;
     }                                           
 
     private void yellowButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         thisFrame.getContentPane().setBackground(Color.yellow);
+        oldColor=Color.yellow;
     }                                            
 
     private void customColorButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        //c=JColorChooser.createDialog(null, "Choose Your Own Color!",)
-        //thisFrame.getContentPane().setBackground(c);
+        if (oldColor==null) {
+            oldColor=Color.black;
+        }
+        Color c=JColorChooser.showDialog(customColorButton, "Choose Your Own Color!",oldColor);
+        thisFrame.getContentPane().setBackground(c);
     }                                                 
 
     private void colorDoneButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
