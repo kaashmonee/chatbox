@@ -7,6 +7,7 @@ package chatboxclient;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -16,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.*;
 import java.net.*;
 import java.io.*;
-import java.util.HashSet;
+
 
 /**
  * They want the Download
@@ -36,6 +37,7 @@ private PrintWriter out;
 private Socket clientSocket;
 private Socket serverSocket;
 private Color oldColor;
+private Font currentFont;
 //private String ipAddress;
 
     /**
@@ -126,7 +128,11 @@ private Color oldColor;
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         changeColorMenuItem = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        messageFieldFontMenu = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        crashMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,15 +191,34 @@ private Color oldColor;
         });
         jMenu2.add(changeColorMenuItem);
 
-        jMenuItem2.setText("jMenuItem2");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenu5.setText("Change Font");
+
+        messageFieldFontMenu.setText("Message Field");
+        messageFieldFontMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                messageFieldFontMenuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu5.add(messageFieldFontMenu);
+
+        jMenuItem3.setText("Sent Message Field");
+        jMenu5.add(jMenuItem3);
+
+        jMenu2.add(jMenu5);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu4.setText("Useless Features");
+
+        crashMenuItem.setText("Crash");
+        crashMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crashMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu4.add(crashMenuItem);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -234,7 +259,7 @@ private Color oldColor;
                             .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(18, 18, 18)
                         .addComponent(whoOnlineLabel)
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,11 +291,16 @@ private Color oldColor;
        JFrame f= new ChangeColorFrame();
        f.setVisible(true);
     }//GEN-LAST:event_changeColorMenuItemActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+//crashes the program
+    private void crashMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crashMenuItemActionPerformed
       System.exit(0);
       thisFrame.setVisible(false);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_crashMenuItemActionPerformed
+
+    private void messageFieldFontMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messageFieldFontMenuActionPerformed
+       // JFontChooser k= new JFontChooser()
+       //FontChooserDialog j =JFontChooser.showDialog(messageFieldFontMenu,"Choose Your Font",currentFont);
+    }//GEN-LAST:event_messageFieldFontMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,16 +310,20 @@ private Color oldColor;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem changeColorMenuItem;
     private javax.swing.JButton connectButton;
+    private javax.swing.JMenuItem crashMenuItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea messageField;
+    private javax.swing.JMenuItem messageFieldFontMenu;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JButton sendButton;
